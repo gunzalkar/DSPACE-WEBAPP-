@@ -14,4 +14,5 @@ unlink /etc/nginx/sites-enabled/default
 systemctl restart nginx
 echo "Nginx and Gunicorn have been configured successfully."
 sleep 2
+ufw allow 8020
 gunicorn app:app –daemon
