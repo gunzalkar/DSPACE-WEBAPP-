@@ -1,0 +1,133 @@
+:root {
+    --primary-bg-color: #e49c59 ; /* yellow */
+    --secondary-bg-color: #ff6464; /* red */
+    --button-bg-color: #ffffff; /* white */
+    --button-bg-hover: #949385; /* light grey */
+    --button-text-color: #000000; /* black */
+    --card-bg-color: #f2f4f0; /* white */
+    --input-border-color: #0000ff; /* blue */
+    --add-synonym-border-color: #008000; /* green */
+    --clear-border-color: #ff0000; /* red */
+    --save-border-color: #008000; /* green */
+    --reinitialize-border-color: #f3de46; /* yellow */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    margin-right: 10px;
+    width: 32px; /* or the size you prefer */
+    height: auto; /* maintain aspect ratio */
+}
+
+body {
+    background-color: var(--primary-bg-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 800px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-right: 20px;
+    white-space: nowrap;
+
+}
+
+#synonyms-list {
+    max-height: 350px; /* Adjust the height as needed */
+    overflow-y: auto;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Ensure input groups inside the scrollable list do not wrap */
+#synonyms-list .input-group {
+    white-space: nowrap;
+}
+
+/* Style adjustments for the input group */
+.input-group label {
+    margin-right: 10px;
+    flex-shrink: 0;
+    text-align: left;
+    font-family: 'Open+Sans', sans-serif;
+    width: 110px; /* Adjust as needed to prevent wrapping */
+
+}
+
+.input-group input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 20px;
+    width: 0; /* Allows the input to grow with flexbox */
+    min-width: 200px; /* Adjust as needed */
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.buttons button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 3px solid;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Open+Sans', sans-serif;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: var(--button-bg-hover);
+}
+
+#add-synonym {
+    border-color: var(--add-synonym-border-color);
+}
+
+#clear {
+    border-color: var(--clear-border-color);
+}
+
+#save-add {
+    border-color: var(--save-border-color);
+}
+
+#reinitialize {
+    border-color: var(--reinitialize-border-color);
+}
+
+.hr-divider {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
