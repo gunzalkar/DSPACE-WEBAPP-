@@ -56,7 +56,11 @@ document.getElementById('reinitialize').addEventListener('click', function() {
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         data: JSON.stringify({}),
-        dataType: 'json'
+        dataType: 'json',
+        success: function(data) {
+            document.getElementById('confirmation').textContent = 'System Reinitialized!';
+            setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
+        }
     });
 });
 
