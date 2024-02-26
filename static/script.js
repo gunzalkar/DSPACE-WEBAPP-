@@ -38,11 +38,12 @@ document.getElementById('save-add').addEventListener('click', function() {
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         data: JSON.stringify({'synonyms': synonyms}),
-        dataType: 'json'
+        dataType: 'json',
+        success: function(data) {
+            document.getElementById('confirmation').textContent = data['msg'];
+            setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
+        }
     });
-
-    document.getElementById('confirmation').textContent = 'Synonyms Saved: ' + synonyms.join(', ');
-    setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
 });
 
 
@@ -58,7 +59,7 @@ document.getElementById('reinitialize').addEventListener('click', function() {
         data: JSON.stringify({}),
         dataType: 'json',
         success: function(data) {
-            document.getElementById('confirmation').textContent = 'System Reinitialized!';
+            document.getElementById('confirmation').textContent = data['msg'];
             setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
         }
     });
