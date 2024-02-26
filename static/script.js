@@ -56,10 +56,7 @@ document.getElementById('reinitialize').addEventListener('click', function() {
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         data: JSON.stringify({}),
-        dataType: 'json',
-        success: function(data) {
-            alert("Settings updated!");
-        }
+        dataType: 'json'
     });
 });
 
