@@ -10,7 +10,7 @@ async function setData() {
     document.getElementById('synonyms-path').value = data["synonyms_folder"]
     document.getElementById('copy-from-path').value = data["solr_copy_from"]
     document.getElementById('copy-to-path').value = data["solr_copy_to"]
-    document.getElementById('solr-bin-path').value = data["bin_path"]
+    document.getElementById('solr-bin-path').value = data["solr_bin_path"]
     document.getElementById('password').value = data["pass"]
 }
 
@@ -21,7 +21,7 @@ document.getElementById('overwrite').addEventListener('click', function() {
         "synonyms_folder": document.getElementById('synonyms-path').value,
         "solr_copy_from": document.getElementById('copy-from-path').value,
         "solr_copy_to": document.getElementById('copy-to-path').value,
-        "bin_path": document.getElementById('solr-bin-path').value,
+        "solr_bin_path": document.getElementById('solr-bin-path').value,
         "pass": document.getElementById('password').value,
     }
     $.ajax({
