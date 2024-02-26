@@ -21,18 +21,18 @@ def settings_page():
 def save_synonyms():
     data = request.json
     config.read('config.ini')
-    command = f"sudo -u {config['data']['user']} ls {config['data']['main_folder']}"
+    command = f"sudo -u {config['Paths']['user']} ls {config['Paths']['main_folder']}"
 
-    output = subprocess.check_output(command, shell=True, input=config['data']['pass'], stderr=subprocess.STDOUT, universal_newlines=True)
+    output = subprocess.check_output(command, shell=True, input=config['Paths']['pass'], stderr=subprocess.STDOUT, universal_newlines=True)
     print(output)
     temp_sy = ""
     for s in data['synonyms']:
         if s:
             temp_sy += s + ","
-    append_command = f"echo f'{temp_sy}' | sudo -u {config['data']['user']} tee -a {config['data']['synonyms_folder']}synonyms.txt > /dev/null"
+    append_command = f"echo f'{temp_sy}' | sudo -u {config['Paths']['user']} tee -a {config['Paths']['synonyms_folder']}synonyms.txt > /dev/null"
     subprocess.check_call(append_command, shell=True)
 
-    copy_command = f"sudo cp -R {config['data']['solr_copy_from']} {config['data']['solr_copy_to']}configsets"
+    copy_command = f"sudo cp -R {config['Paths']['solr_copy_from']} {config['Paths']['solr_copy_to']}configsets"
     subprocess.check_call(copy_command, shell=True)
 
     return {"msg": "Success"}
@@ -69,7 +69,7 @@ def over_write():
 @app.route('/get_settings', methods=['GET'])
 def get_settings():
     config.read('config.ini')
-    return dict(config['data'])
+    return dict(config['Paths'])
 
 
 if __name__ == '__main__':
