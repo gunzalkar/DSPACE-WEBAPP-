@@ -29,10 +29,10 @@ def save_synonyms():
     for s in data['synonyms']:
         if s:
             temp_sy += s + ","
-    append_command = f"echo f'{temp_sy}' | sudo -u {config['Paths']['user']} tee -a {config['Paths']['synonyms_folder']}synonyms.txt > /dev/null"
+    append_command = f"echo '{temp_sy}' | sudo -u {config['Paths']['user']} tee -a {config['Paths']['synonyms_folder']}synonyms.txt > /dev/null"
     subprocess.check_call(append_command, shell=True)
 
-    copy_command = f"sudo cp -R {config['Paths']['solr_copy_from']} {config['Paths']['solr_copy_to']}configsets"
+    copy_command = f"sudo cp -R {config['Paths']['solr_copy_from']} {config['Paths']['solr_copy_to']}"
     subprocess.check_call(copy_command, shell=True)
 
     return {"msg": "Success"}
@@ -41,7 +41,7 @@ def save_synonyms():
 @app.route('/reinit_sys', methods=['POST'])
 def reinit_sys():
     config.read('config.ini')
-    restart_command = f"sudo {config['solr_bin_path']} restart -force -all"
+    restart_command = f"sudo {config['Paths']['solr_bin_path']} restart -force -all"
     subprocess.check_call(restart_command, shell=True)
     return {"msg": "Success"}
 
@@ -55,7 +55,7 @@ def over_write():
         'synonyms_folder': data['synonyms_folder'],
         'solr_copy_from': data['solr_copy_from'],
         'solr_copy_to': data['solr_copy_to'],
-        'solr_bin_path': data['bin_path'],
+        'solr_bin_path': data['solr_bin_path'],
         'pass': data['pass'],
         'user': data['user']
     }
