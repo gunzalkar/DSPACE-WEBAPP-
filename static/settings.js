@@ -31,7 +31,8 @@ document.getElementById('overwrite').addEventListener('click', function() {
         data: JSON.stringify(temp_json),
         dataType: 'json',
         success: function(data) {
-            alert("Settings updated!");
+            document.getElementById('confirmation').textContent = data['msg'];
+            setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
         }
     });
 });
