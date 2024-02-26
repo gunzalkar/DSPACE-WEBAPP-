@@ -1,0 +1,24 @@
+Update the config.ini files accordingly to the commands in relation. From synonyms.py file
+  
+——————
+
+append_command = f"echo 'angry,upset,mad,stupid,गुस्सा,gussa' | sudo -u tomcat tee -a /dspace/solr/search/conf/synonyms.txt > /dev/null"
+
+
+append_command = f"echo '{temp_sy}' | sudo -u {config['Paths']['user']} tee -a {config['Paths']['synonyms_folder']}synonyms.txt > /dev/null"
+
+
+——————
+
+copy_command = "sudo cp -R /dspace/solr/* /opt/solr-8.11/server/solr/configsets"
+
+copy_command = f"sudo cp -R {config['Paths']['solr_copy_from']} {config['Paths']['solr_copy_to']}"
+
+————————
+
+
+restart_command = "sudo /opt/solr-8.11/bin/solr restart -force -all"
+
+restart_command = f"sudo {config['Paths']['solr_bin_path']} restart -force -all"
+ 
+
