@@ -13,4 +13,5 @@ systemctl restart nginx
 echo "Nginx and Gunicorn have been configured successfully."
 sleep 2
 ufw allow 8020
+pkill gunicorn
 gunicorn app:app –daemon
