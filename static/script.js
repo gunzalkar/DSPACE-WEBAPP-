@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let i = 0; i <= 6; i++) {
         addSynonymInput(i);
     }
-
 });
-
 
 function addSynonymInput(index) {
     var synonym_txt = "";
@@ -23,7 +21,6 @@ function addSynonymInput(index) {
     `;
     synonymsList.appendChild(newSynonymInput);
 }
-
 
 document.getElementById('save-add').addEventListener('click', function() {
     var synonymInputs = document.querySelectorAll('#synonyms-list input[type="text"]');
@@ -48,7 +45,8 @@ document.getElementById('save-add').addEventListener('click', function() {
 
 
 document.getElementById('reinitialize').addEventListener('click', function() {
-    synonymsList.innerHTML = '';
+    showLoader(); // Show loading animation
+    synonymsList.innerHTML = ''; // Clear the synonyms list
     for (let i = 0; i <= 6; i++) {
         addSynonymInput(i);
     }
@@ -59,6 +57,7 @@ document.getElementById('reinitialize').addEventListener('click', function() {
         data: JSON.stringify({}),
         dataType: 'json',
         success: function(data) {
+            hideLoader(); // Hide loading animation
             document.getElementById('confirmation').textContent = data['msg'];
             setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
         }
@@ -77,3 +76,17 @@ document.getElementById('clear').addEventListener('click', function() {
         addSynonymInput(i);
     }
 });
+
+function showLoader() {
+    const loader = document.createElement('div');
+    loader.id = 'loader';
+    loader.innerHTML = '<div class="loader"></div>';
+    document.body.appendChild(loader);
+}
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.remove();
+    }
+}
