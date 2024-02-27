@@ -14,4 +14,5 @@ echo "Nginx and Gunicorn have been configured successfully."
 sleep 2
 ufw allow 8020
 pkill gunicorn
-gunicorn app:app –daemon
+screen -X -S app quit
+screen -S app -d -m gunicorn app:app
