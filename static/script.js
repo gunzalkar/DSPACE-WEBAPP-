@@ -1,11 +1,12 @@
-// script.js
 const synonymsList = document.getElementById('synonyms-list');
 
 document.addEventListener('DOMContentLoaded', function() {
     for (let i = 0; i <= 6; i++) {
         addSynonymInput(i);
     }
+
 });
+
 
 function addSynonymInput(index) {
     var synonym_txt = "";
@@ -23,9 +24,34 @@ function addSynonymInput(index) {
     synonymsList.appendChild(newSynonymInput);
 }
 
+
+document.getElementById('save-add').addEventListener('click', function() {
+    var synonymInputs = document.querySelectorAll('#synonyms-list input[type="text"]');
+    var synonyms = [];
+
+    synonymInputs.forEach(function(input) {
+        synonyms.push(input.value);
+    });
+
+    $.ajax({
+        url: "/save_synonyms",
+        type: "POST",
+        contentType: "application/json; charset=UTF-8",
+        data: JSON.stringify({'synonyms': synonyms}),
+        dataType: 'json',
+        success: function(data) {
+            document.getElementById('confirmation').textContent = data['msg'];
+            setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
+        }
+    });
+});
+
+
 document.getElementById('reinitialize').addEventListener('click', function() {
-    synonymsList.innerHTML = ''; // Clear the synonyms list
-    showLoadingScreen(); // Show loading screen
+    synonymsList.innerHTML = '';
+    for (let i = 0; i <= 6; i++) {
+        addSynonymInput(i);
+    }
     $.ajax({
         url: "/reinit_sys",
         type: "POST",
@@ -33,17 +59,21 @@ document.getElementById('reinitialize').addEventListener('click', function() {
         data: JSON.stringify({}),
         dataType: 'json',
         success: function(data) {
-            hideLoadingScreen(); // Hide loading screen
             document.getElementById('confirmation').textContent = data['msg'];
             setTimeout(() => document.getElementById('confirmation').textContent = '', 3000);
         }
     });
 });
 
-function showLoadingScreen() {
-    document.getElementById('loadingScreen').style.display = 'block';
-}
+document.getElementById('add-synonym').addEventListener('click', function() {
+    const synonymCount = synonymsList.querySelectorAll('.input-group').length + 1;
+    addSynonymInput(synonymCount);
 
-function hideLoadingScreen() {
-    document.getElementById('loadingScreen').style.display = 'none';
-}
+});
+
+document.getElementById('clear').addEventListener('click', function() {
+    synonymsList.innerHTML = '';
+    for (let i = 0; i <= 6; i++) {
+        addSynonymInput(i);
+    }
+});
