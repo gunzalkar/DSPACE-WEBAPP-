@@ -1,5 +1,5 @@
-Update the config.ini files accordingly to the commands in relation. From synonyms.py file
-  
+Update the config.ini files accordingly to the commands in relation. From synonyms.py to app.py file
+
 ——————
 
 append_command = f"echo 'angry,upset,mad,stupid,गुस्सा,gussa' | sudo -u tomcat tee -a /dspace/solr/search/conf/synonyms.txt > /dev/null"
