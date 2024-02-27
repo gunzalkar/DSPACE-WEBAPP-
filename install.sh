@@ -16,4 +16,4 @@ echo "Nginx and Gunicorn have been configured successfully."
 sleep 2
 ufw allow 8020
 chmod +x run.sh
-gunicorn app:app –daemon
+screen -S app -d -m gunicorn app:app
